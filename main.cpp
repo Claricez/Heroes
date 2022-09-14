@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string.h>
-using namespace std;
+#include <string>
+using std::string;
 using std::cout;
 
 #include "heroes.h"
@@ -9,28 +9,23 @@ using std::cout;
 int main( )
 {
     cout << "Usando Heróis no main\n";
+    Heroes defaultHeroes;
+
+    Heroes BlackWidow("Black Widow", "Spy", 20, 20, 15, 40);
     
-    Heroes WonderWoman;
-    strcpy(WonderWoman.name, "Wonder Woman");
-    strcpy(WonderWoman.type, "Battle");
-    WonderWoman.setStrength(80);
-    WonderWoman.setShield(50);
-    WonderWoman.setLife(50);
+    BlackWidow.print();
+    BlackWidow.reduceDefense();
+    BlackWidow.print();
+
+
+    Heroes WonderWoman("Wonder Woman", "Amazon", 15, 20, 25);
     WonderWoman.print();
-    WonderWoman.especialPower( );
-    WonderWoman.power();
+    WonderWoman.upLife();
     WonderWoman.print();
 
-    Heroes BlackWidow; 
-    strcpy(BlackWidow.name, "Black Widow" );
-    strcpy(BlackWidow.type, "Battle");
-    BlackWidow.setStrength(20);
-    BlackWidow.setShield(20);
-    BlackWidow.setLife(15); 
-    BlackWidow.print();
-    BlackWidow.especialPower( );
-    BlackWidow.power();
-    BlackWidow.print();
-    return 0;
+    Heroes Wanda( "Scarlet Witch", "Mutant", 10, 20);
+    Wanda.print();
+    Wanda.reduceLife();
+    Wanda.print();
 
 }
