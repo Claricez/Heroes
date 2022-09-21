@@ -22,6 +22,8 @@ public:
     void especialPower( );
     void reduceDefense( );
     void upLife( );
+    static void printTypes( );
+
 
 
     //Set
@@ -33,6 +35,8 @@ public:
     void setDamage( int ); 
     void setSuperPower( int ); 
     void setDefense( int );
+    void setDescription( string );
+
 
     //Get
     int getStrength( ) const;
@@ -43,6 +47,17 @@ public:
     string getType( ) const;
     int getDamage( ) const; 
     int getDefense( ) const;
+    string getDescription( )const;
+
+    //Static
+    static int getDamageMax( )
+    {
+        return damageMax; 
+    }; 
+    static int getDamageContinuos( )
+    {
+        return damageContinuos;
+    };
     
 
 private: 
@@ -53,8 +68,17 @@ private:
     int defense; 
     string name;
     string type; 
-    const int superPower; 
-    const int damage; 
+    string description;
+    bool shieldActive; 
+    const int SuperPower; 
+    const int Damage;
+
+    static int damageMax;
+    static int damageContinuos;
+    static const int NumTypes = 4;
+    static const string Types[ NumTypes ];
+
+
     
 };
 

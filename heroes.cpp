@@ -6,7 +6,12 @@ using std::string;
 
 #include "heroes.h"
 
-Heroes::Heroes( ):damage(25), superPower(100)
+
+int Heroes::damageContinuos = -10;
+int Heroes::damageMax = 50;
+const string Heroes::Types[ NumTypes ] = {"Human","Mutant", "Modified human","space inhabitant" };
+
+Heroes::Heroes( ):Damage(25), SuperPower(100)
 {
    cout << "\nDefault.\n";
    name = "none";
@@ -19,7 +24,7 @@ Heroes::Heroes( ):damage(25), superPower(100)
 }
 
 //Construtor com atributos específicos 
-Heroes::Heroes( string name, string type, int life, int strength, int defense):damage(25), superPower(100)
+Heroes::Heroes( string name, string type, int life, int strength, int defense):Damage(25), SuperPower(100)
 {
     cout<<"\nConstrutor com atributos específicos";
     setName( name);
@@ -28,10 +33,11 @@ Heroes::Heroes( string name, string type, int life, int strength, int defense):d
     setStrength( strength );
     setDefense( defense );
     setLife( life );
+    damageMax++;
 }
 
 //Construtor com todos os atributos
-Heroes::Heroes( string name, string type, int shield, int strength, int life, int defense):damage(25), superPower(100)
+Heroes::Heroes( string name, string type, int shield, int strength, int life, int defense):Damage(25), SuperPower(100)
     {
         cout << "\nInicializando Heroes com todos os atributos\n";
         setName( name );
@@ -40,13 +46,15 @@ Heroes::Heroes( string name, string type, int shield, int strength, int life, in
         setStrength( strength );
         setLife( life );
         setDefense( defense );
+
+        damageContinuos++;
         cout << "Finalizando Heroes\n"; 
 
       
     }
 
 //Construtor cópia
-Heroes::Heroes( const Heroes& other): damage(25), superPower(100)
+Heroes::Heroes( const Heroes& other): Damage(25), SuperPower(100)
 {
     cout << "Construtor cópia";
     this->name = other.name;
@@ -58,7 +66,7 @@ Heroes::Heroes( const Heroes& other): damage(25), superPower(100)
 }
 
 //Construtor com apenas os atributos name, type, shield e life. 
-Heroes::Heroes( string name, string type, int shield,int life):damage(25), superPower(100)
+Heroes::Heroes( string name, string type, int shield,int life):Damage(25), SuperPower(100)
     {
         cout << "\nInicializando Heroes com atributos especificados";
         setName( name );
@@ -77,17 +85,19 @@ Heroes::~Heroes( )
 
 }
 
+//Declarando os statics
 
 void Heroes::print( ) const
 { 
     cout << "\nName: " << name << "\n";
-    cout << "Type: " << type << "\n";
+    cout << "Types in mission: " << type << "\n";
     cout << "Shield: " << shield << "\n";
     cout << "Strength: "   << strength << '\n';
     cout << "Life: " << life << '\n';
     cout << "Defense: " << defense << "\n";
-    cout << "Super Power: " << superPower << "\n";
-    cout << "Damage: " << damage << "\n";
+    cout << "Super Power: " << SuperPower << "\n";
+    cout << "Damage: " << Damage << "\n";
+    
 }
 
 
@@ -117,7 +127,18 @@ void Heroes::setLife(int life){
 
 void Heroes::reduceLife( ) 
 {
-    life = life - 10;
+    if ( life > 0)
+    {
+        if ( shieldActive = false)
+        {
+            life = life - 10;
+        }
+        life = life - 5;
+        return;
+    }
+    cout <<"Personagem derrotado";
+    return;
+  
     
 }
 
@@ -155,10 +176,16 @@ void Heroes::setType( string type )
     return;
 }
 
+void Heroes::setDescription( string description )
+{
+    this-> description = description;
+    return;
+}
+
 
 int Heroes::getDamage( ) const
 {
-    return damage; 
+    return Damage; 
 }
 
 
@@ -189,10 +216,22 @@ string Heroes::getType() const
 
 int Heroes::getSuperPower( ) const
 {
-    return superPower;
+    return SuperPower;
 }
 
 int Heroes::getDefense( ) const
 {
     return defense; 
+}
+
+string Heroes::getDescription( )const
+{
+    return description;
+}
+
+void Heroes::printTypes( )
+{
+    for( int i = 0; i < NumTypes; i++ )
+        cout << Types[ i ] << ' ' << '(' <<Types[ i ] << ')' << '\n';
+    
 }

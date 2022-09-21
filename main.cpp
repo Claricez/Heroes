@@ -8,14 +8,17 @@ using std::cout;
 
 int main( )
 {
+    Heroes typeHeroes;
+    typeHeroes.printTypes();
+
     cout << "Usando Heróis no main\n";
     Heroes defaultHeroes;
 
-    Heroes BlackWidow("Black Widow", "Spy", 20, 20, 15, 40);
-    
+    Heroes BlackWidow("Black Widow", "Spy", 20, 20, 15);
     BlackWidow.print();
     BlackWidow.reduceDefense();
     BlackWidow.print();
+    BlackWidow.getDamageContinuos();
 
 
     Heroes WonderWoman("Wonder Woman", "Amazon", 15, 20, 25);
@@ -24,8 +27,9 @@ int main( )
     WonderWoman.print();
 
     Heroes Wanda( "Scarlet Witch", "Mutant", 10, 20);
-    Wanda.print();
     Wanda.reduceLife();
+    Wanda.print();
+    Wanda.getDamageMax( );
     Wanda.print();
 
 }
