@@ -11,8 +11,9 @@ using std::cout;
 int main( )
 {   
 
-   Heroes level;
-   level.printLevel();
+   Heroes prop;
+   prop.printLevel();
+   prop.printFullTypes();
 
    Heroes BlackWidow("Black Widow", "Spy", 40, 80, 25);
    Heroes *blackPtr = &BlackWidow;

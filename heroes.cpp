@@ -245,7 +245,17 @@ void Heroes::printTypes( int i)
 
 void Heroes::printLevel()
 {
-    cout << "\n"<< "Níveis" << '\n';
+    cout << "\n"<< "Levels" << '\n';
     for( int i = 0; i < 4 ; i++ )
        cout << level[ i ] << ' ' << '\n';
+}
+
+void Heroes::printFullTypes()
+{
+    int i = 0;
+    cout << "Types of heroes" << "\n";
+    while( i <= NUMTYPES ){
+        cout << Types[i] << "\n";
+        i++;
+    }
 }

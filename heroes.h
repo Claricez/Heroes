@@ -24,6 +24,7 @@ public:
     void upLife( );
     static void printTypes( int );
     void printLevel();
+    void printFullTypes();
 
 
 
