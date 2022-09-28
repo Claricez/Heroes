@@ -7,9 +7,9 @@ class Heroes
 {
 public:
     Heroes();
-    Heroes(string, string, int, int, int, int);
-    Heroes( string, string, int, int, int);
-    Heroes( string, string, int, int);
+    Heroes(const string &, const string &, int, int, int, int);
+    Heroes(const string &, const string &, int, int, int);
+    Heroes(const string &, const string &, int, int);
     Heroes( const Heroes &);
     ~Heroes();
     
@@ -22,7 +22,8 @@ public:
     void especialPower( );
     void reduceDefense( );
     void upLife( );
-    static void printTypes( );
+    static void printTypes( int );
+    void printLevel();
 
 
 
@@ -73,10 +74,14 @@ private:
     const int SuperPower; 
     const int Damage;
 
+    //Arrays
+    string level[4] = {"Comum", "Normal", "Rare", "Hight Rare"};
+
+    //Statics
     static int damageMax;
     static int damageContinuos;
-    static const int NumTypes = 4;
-    static const string Types[ NumTypes ];
+    static const int NUMTYPES = 4;
+    static const string Types[ NUMTYPES ];
 
 
     

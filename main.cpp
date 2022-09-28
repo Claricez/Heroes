@@ -3,33 +3,27 @@
 using std::string;
 using std::cout;
 
+
+#include <vector>
 #include "heroes.h"
 #include "heroes.cpp"
 
 int main( )
-{
-    Heroes typeHeroes;
-    typeHeroes.printTypes();
+{   
 
-    cout << "Usando Heróis no main\n";
-    Heroes defaultHeroes;
+   Heroes level;
+   level.printLevel();
 
-    Heroes BlackWidow("Black Widow", "Spy", 20, 20, 15);
-    BlackWidow.print();
-    BlackWidow.reduceDefense();
-    BlackWidow.print();
-    BlackWidow.getDamageContinuos();
+   Heroes BlackWidow("Black Widow", "Spy", 40, 80, 25);
+   Heroes *blackPtr = &BlackWidow;
 
+   blackPtr->print();
+   blackPtr->printTypes(0);
 
-    Heroes WonderWoman("Wonder Woman", "Amazon", 15, 20, 25);
-    WonderWoman.print();
-    WonderWoman.upLife();
-    WonderWoman.print();
+   Heroes WonderWoman("Scarlet Witch", "Witch", 70, 90);
+   Heroes *wonderPtr = &WonderWoman;
 
-    Heroes Wanda( "Scarlet Witch", "Mutant", 10, 20);
-    Wanda.reduceLife();
-    Wanda.print();
-    Wanda.getDamageMax( );
-    Wanda.print();
-
+   wonderPtr->print();
+   wonderPtr->printTypes(1);
+   
 }
