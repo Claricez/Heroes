@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 using std::string;
 using std::cout;
 
@@ -8,23 +9,32 @@ using std::cout;
 #include "heroes.h"
 #include "heroes.cpp"
 
+struct poder{
+    string nome;
+    int poder;
+   }poder1;
+   
 int main( )
 {   
 
-   Heroes prop;
-   prop.printLevel();
-   prop.printFullTypes();
-
-   Heroes BlackWidow("Black Widow", "Spy", 40, 80, 25);
-   Heroes *blackPtr = &BlackWidow;
-
-   blackPtr->print();
-   blackPtr->printTypes(0);
-
-   Heroes WonderWoman("Scarlet Witch", "Witch", 70, 90);
-   Heroes *wonderPtr = &WonderWoman;
-
-   wonderPtr->print();
-   wonderPtr->printTypes(1);
    
+
+   Heroes *heroes01Ptr;
+   Heroes *heroes02Ptr;
+   vector< string * > heroes;
+   heroes01Ptr = new Heroes("Black Widow", "Spy", 40, 80, 25);
+   heroes01Ptr->print();
+  
+   
+   heroes.push_back( new string("Wonder Woman"));
+
+   for (int i = 0; i<heroes.size(); i++ )
+   {
+      heroes02Ptr->heroina( *heroes[i]);
+   }
+
+   heroes02Ptr->print();
+
+   
+
 }

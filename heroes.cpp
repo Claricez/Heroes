@@ -3,6 +3,7 @@
 #include "heroes.h"
 using std::cout;
 using std::string;
+using std::ostream;
 
 #include "heroes.h"
 
@@ -36,10 +37,11 @@ Heroes::Heroes(const string & name, const string & type, int life, int strength,
     setDefense( defense );
     setLife( life );
     damageMax++;
+    
 }
 
 //Construtor com todos os atributos
-Heroes::Heroes( const string & name, const string & type, int shield, int strength, int life, int defense ):Damage(25), SuperPower(100)
+Heroes::Heroes( const string & name, const string & type, int shield, int strength, int life, int defense, int d, int m, int a):Damage(25), SuperPower(100)
     {
         cout << "\nInicializando Heroes com todos os atributos\n";
         setName( name );
@@ -48,9 +50,9 @@ Heroes::Heroes( const string & name, const string & type, int shield, int streng
         setStrength( strength );
         setLife( life );
         setDefense( defense );
-
-
         damageContinuos++;
+        DataNasc = new Data();
+        
         cout << "Finalizando Heroes\n"; 
 
       
@@ -102,6 +104,8 @@ void Heroes::print( ) const
     cout << "Defense: " << defense << "\n";
     cout << "Super Power: " << SuperPower << "\n";
     cout << "Damage: " << Damage << "\n";
+  
+   
     
 }
 
@@ -243,11 +247,10 @@ void Heroes::printTypes( int i)
     cout << Types[i] << "\n";
 }
 
-void Heroes::printLevel()
+void Heroes::printLevel(int i)
 {
-    cout << "\n"<< "Levels" << '\n';
-    for( int i = 0; i < 4 ; i++ )
-       cout << level[ i ] << ' ' << '\n';
+   
+    cout << "Level: " << level[ i ] << ' ' << '\n';
 }
 
 void Heroes::printFullTypes()
@@ -259,3 +262,27 @@ void Heroes::printFullTypes()
         i++;
     }
 }
+
+void Heroes::DuelFail( int setLife )
+{
+    if ( setLife <= 0)
+    {
+        cout << "Personagem derrotado" << "\n";
+        duelDefeatPtr[ duelDefeat++];
+        return;
+    }
+}
+
+void Heroes::heroina( const string &newHero)
+{
+    if (heroes.size( )< numHeroes)
+    {
+        numHeroes++;
+        heroes.push_back( new string(newHero));
+        return;
+    }
+
+    cout << "Número de heroinas por batalha excedido" << "\n";
+}
+
+

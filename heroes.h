@@ -1,17 +1,33 @@
 #ifndef HEROES_H
 #define HEROES_H
 #include <string>
+#include <iostream>
 using std::string;
+using std::ostream;
+#include <vector>
+#include "Data.h"
+#include "Villains.h"
+#include "Battle.h"
+
+
+
+using std::vector;
+
 
 class Heroes
 {
 public:
+    
+    
+    //Construtores
     Heroes();
-    Heroes(const string &, const string &, int, int, int, int);
+    Heroes(const string &, const string &, int, int, int, int, int, int, int);
     Heroes(const string &, const string &, int, int, int);
     Heroes(const string &, const string &, int, int);
     Heroes( const Heroes &);
     ~Heroes();
+
+  
     
    
 
@@ -23,8 +39,10 @@ public:
     void reduceDefense( );
     void upLife( );
     static void printTypes( int );
-    void printLevel();
+    void printLevel(int);
     void printFullTypes();
+    void DuelFail( int );
+    void heroina( const string &);
 
 
 
@@ -38,6 +56,7 @@ public:
     void setSuperPower( int ); 
     void setDefense( int );
     void setDescription( string );
+    void setDATA( Data);
 
 
     //Get
@@ -60,10 +79,13 @@ public:
     {
         return damageContinuos;
     };
+
+   
     
 
 private: 
 
+    //Atributos
     int strength;
     int life;
     int shield;
@@ -74,6 +96,7 @@ private:
     bool shieldActive; 
     const int SuperPower; 
     const int Damage;
+    int numHeroes; 
 
     //Arrays
     string level[4] = {"Comum", "Normal", "Rare", "Hight Rare"};
@@ -84,7 +107,20 @@ private:
     static const int NUMTYPES = 4;
     static const string Types[ NUMTYPES ];
 
+    vector< string * > heroes; 
 
+    int *duelDefeatPtr;
+
+    int duelSize;
+
+    int duelDefeat;
+
+    void printDuel( ) const;
+    void alocarDuel( int );
+
+    Data *DataNasc;
+    Battle vitoria;
+    Villains viloes;
     
 };
 
