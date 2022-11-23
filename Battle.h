@@ -2,25 +2,28 @@
 #define BATTLE_H
 #include <string>
 #include <iostream>
+#include "time.h"
+
 using std::string;
 using std::ostream;
 
-class Battle
+
+class Battle: public Time
 {
-    public:
-    //Sobrecarga de operadores
-    //Operador <<
     friend ostream &operator<<(ostream &, const Battle &);
+    public:
+ 
 
     //Operador =
-    const Battle &operator=( const Battle &);
+    //const Battle &operator=( const Battle &);
   
    bool operator==(const Battle &) const;
     //Construtores
-        Battle(string &, int, int, int, int, bool, int, int = 10);
-        Battle(int = 10);
-        Battle(const Battle &);
-        ~Battle();
+    Battle();
+    //Battle( int, int , bool, TIME, string );
+    //aBattle(int = 10);
+    Battle(const Battle &);
+    ~Battle();
 
     //Métodos
    
@@ -30,20 +33,25 @@ class Battle
     //Get
     int getQtd() const;
 
-    int &operator[] (int);
-    int operator[] (int) const;
+    //Set
+    void setPoder(int poder);
+
+    void operator=(Battle &other);
+    bool operator==(Battle &other) const;
+    bool operator!=(Battle &other) const;
+    void operator!();
 
     private:
-        string name;
+        
+        int totalPersonagens;
         int poder;
         int defesa;
-        int vida;
-        int escudo;
         bool escudoAtivado;
-        int qtdPersonagens;
         int *ptr;
+        int qtdPersonagens; 
+        
 
 
 };
 
-#endif // VILLAINS_H
+#endif 

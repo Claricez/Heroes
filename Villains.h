@@ -1,23 +1,38 @@
 #ifndef VILLAINS_H
 #define VILLAINS_H
 #include <string>
+#include "heroes.h"
+#include <iostream>
+
+using std::string;
+using std::ostream;
  
-class Villains
+class Villains: public Heroes
 {
     public:
-    //Operator ==
+
+    friend ostream &operator<<(ostream &, const Villains &);
    
     //Construtores
         Villains();
+        Villains(string, int, int, int);
         Villains(const Villains &);
         ~Villains();
 
     //Métodos
     void print() const;
-    void poderSuper();
-    void danoBaixo();
+    void poderSuper( int );
+    void danoBaixo( int );
+    void vidaReduzida(int);
+
+    //Set
+    void setPoder(int);
+    void setDefesa(int);
+    void setName(string);
+    void setEscudo(int);
 
     private:
+       
         string name;
         int poder;
         int defesa;

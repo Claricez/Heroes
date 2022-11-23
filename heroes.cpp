@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
 #include "heroes.h"
+#include <vector>
 using std::cout;
 using std::string;
 using std::ostream;
+using std::vector;
 
 #include "heroes.h"
 
@@ -14,10 +16,12 @@ int Heroes::damageContinuos = -10;
 int Heroes::damageMax = 50;
 const string Heroes::Types[ NUMTYPES ] = {"Human","Mutant", "Modified human","space inhabitant" };
 
+//Static Name
+vector<string> Heroes::name = {"Wonder Woman", "Black Window", "Scarlet Witch", "Miss Marvel", "Captain Marvel", "Rougue"};
 Heroes::Heroes( ):Damage(25), SuperPower(100)
 {
    cout << "\nDefault.\n";
-   name = "none";
+  
    type = "none";
    strength = 0;
    life = 0;
@@ -26,7 +30,7 @@ Heroes::Heroes( ):Damage(25), SuperPower(100)
    defense = 0;
 }
 
-//Construtor com atributos específicos 
+/**Construtor com atributos específicos 
 Heroes::Heroes(const string & name, const string & type, int life, int strength, int defense):Damage(25), SuperPower(100)
 {
     cout<<"\nConstrutor com atributos específicos";
@@ -39,8 +43,8 @@ Heroes::Heroes(const string & name, const string & type, int life, int strength,
     damageMax++;
     
 }
-
-//Construtor com todos os atributos
+*/
+/**Construtor com todos os atributos
 Heroes::Heroes( const string & name, const string & type, int shield, int strength, int life, int defense, int d, int m, int a):Damage(25), SuperPower(100)
     {
         cout << "\nInicializando Heroes com todos os atributos\n";
@@ -51,13 +55,13 @@ Heroes::Heroes( const string & name, const string & type, int shield, int streng
         setLife( life );
         setDefense( defense );
         damageContinuos++;
-        DataNasc = new Data();
+       
         
         cout << "Finalizando Heroes\n"; 
 
       
     }
-
+*/
 //Construtor cópia
 Heroes::Heroes( const Heroes& other): Damage(25), SuperPower(100)
 {
@@ -71,15 +75,16 @@ Heroes::Heroes( const Heroes& other): Damage(25), SuperPower(100)
 }
 
 //Construtor com apenas os atributos name, type, shield e life. 
-Heroes::Heroes( const string & name, const string & type, int shield,int life):Damage(25), SuperPower(100)
+Heroes::Heroes( const string &type, int shield,int life, TIME time01, string capitao):Damage(25), SuperPower(100), Time(time01, capitao)
     {
         cout << "\nInicializando Heroes com atributos especificados";
-        setName( name );
+        
         setType( type );
         setShield( shield );
         setLife( life );
-        defense = 0;
-        strength = 0;
+        this -> defense = 0;
+        this -> strength = 0;
+        this-> data = Data();
         
 
     }
@@ -94,6 +99,19 @@ Heroes::~Heroes( )
 
 //Declarando os statics
 
+//Operador <<
+ostream &operator<<(ostream &out, const Heroes &t)
+{
+   
+    out << "Type:" << t.type << '\n';
+    out << "Life:" << t.life << '\n';
+    out << "Shield:" << t.shield << '\n';
+
+    
+    return out;
+};
+
+/*
 void Heroes::print( ) const
 { 
     cout << "\nName: " << name << "\n";
@@ -109,7 +127,7 @@ void Heroes::print( ) const
     
 }
 
-
+*/
 void Heroes::power( ){
     strength = strength + 10;
 }
@@ -176,11 +194,6 @@ void Heroes::setShield(int shield){
     this->shield = shield;
 }
 
-void Heroes::setName( string name)
-{
-    this-> name = name;
-    return;
-}
 
 void Heroes::setType( string type )
 {
@@ -217,10 +230,7 @@ int Heroes::getShield() const
     return shield; 
 }
 
-string Heroes::getName() const
-{
-    return name; 
-}
+
 
 string Heroes::getType() const
 {
@@ -284,5 +294,6 @@ void Heroes::heroina( const string &newHero)
 
     cout << "Número de heroinas por batalha excedido" << "\n";
 }
+
 
 

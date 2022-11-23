@@ -1,30 +1,36 @@
 #include <iostream>
 using std::cout;
+using std::ostream;
 
 #include "Villains.h"
 
-Villains::Villains();
-
-//Métodos
-void Villains::print( )const
-{
-    cout << "\nName: " << name << "\n";
-    cout << "\nPoder: " << poder << "\n";
-    cout << "\nDefesa: " << defesa << "\n";
-    
+Villains::Villains(string name, int poder, int defesa, int life):Heroes(life){
+    this->poder=poder;
+    this->defesa=defesa;
+    this->name=name;
 }
 
-void Villains::poderSuper()
+ostream &operator<<(ostream &out, const Villains &v)
+{
+    out << "Name" << v.name; 
+    out << "Defesa: " << v.defesa ;
+    out << "Poder: " << v.poder;
+    
+    return out;
+};
+
+
+void Villains::poderSuper(int poder)
 {
     poder = poder + 25;
 }
 
-void Villains::danoBaixo()
+void Villains::danoBaixo(int life )
 {
     life = life - 10;
 }
 
-void Heroes::vidaReduzida( ) 
+void Villains::vidaReduzida(int life ) 
 {
     if ( life > 0)
     {

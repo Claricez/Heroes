@@ -1,29 +1,35 @@
 #ifndef HEROES_H
 #define HEROES_H
+
 #include <string>
 #include <iostream>
+#include <vector>
+
 using std::string;
 using std::ostream;
-#include <vector>
-#include "Data.h"
-#include "Villains.h"
-#include "Battle.h"
-
-
-
 using std::vector;
 
+#include "Data.cpp"
+#include "time.h"
 
-class Heroes
+
+
+
+//Sobrecarga de operadores
+//Operador <<
+
+
+class Heroes: public Time
 {
+
+    friend ostream &operator<<(ostream &, const Heroes &);
+
 public:
-    
-    
     //Construtores
     Heroes();
-    Heroes(const string &, const string &, int, int, int, int, int, int, int);
-    Heroes(const string &, const string &, int, int, int);
-    Heroes(const string &, const string &, int, int);
+    //Heroes(const string &, const string &, int, int, int, int, int, int, int);
+    //Heroes(const string &, const string &, int, int, int);
+    Heroes(const string &, int, int, TIME, string);
     Heroes( const Heroes &);
     ~Heroes();
 
@@ -57,6 +63,7 @@ public:
     void setDefense( int );
     void setDescription( string );
     void setDATA( Data);
+    
 
 
     //Get
@@ -69,8 +76,9 @@ public:
     int getDamage( ) const; 
     int getDefense( ) const;
     string getDescription( )const;
+    
 
-    //Static
+    //Stat/c
     static int getDamageMax( )
     {
         return damageMax; 
@@ -79,6 +87,12 @@ public:
     {
         return damageContinuos;
     };
+
+    //Sobrecarga
+    Heroes & operator=(const Heroes &);
+    bool operator==(const Heroes &) const;
+    bool operator!=(const Heroes &) const;
+    void operator!();
 
    
     
@@ -90,7 +104,6 @@ private:
     int life;
     int shield;
     int defense; 
-    string name;
     string type; 
     string description;
     bool shieldActive; 
@@ -106,6 +119,7 @@ private:
     static int damageContinuos;
     static const int NUMTYPES = 4;
     static const string Types[ NUMTYPES ];
+    static vector<string> name;
 
     vector< string * > heroes; 
 
@@ -118,9 +132,8 @@ private:
     void printDuel( ) const;
     void alocarDuel( int );
 
-    Data *DataNasc;
-    Battle vitoria;
-    Villains viloes;
+    Data data;
+    
     
 };
 

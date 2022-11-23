@@ -1,36 +1,45 @@
 #include <iostream>
-#include <string>
+
 #include "Battle.h"
-using std::cout;
-using std::string;
-using std::ostream;
 
-//Construtores
 
-//Métodos
+/
+Battle::Battle()
+{
+    this->poder = 10;
+    this->defesa = 10;
+    this->escudoAtivado = true;
+}
 
-//Operador <<
-//Operador <<
+
+Battle::Battle(int poder, int defesa, bool escudoAtivado, TIME time01, string capitao):Time(time01, capitao)
+{
+    setPoder(poder);
+    this->defesa = defesa;
+    this-> escudoAtivado = escudoAtivado;
+    
+}
+
+
 ostream &operator<<(ostream &out, const Battle &b)
 {
-    out << "Name:";
-    out << b.name << '\n';
-    out << "Poder";
-    out<< b.poder << '\n';
-    out<< "Defesa: ";
-    out << b.defesa << '\n';
-    out<< "Vida" ;
-    out << b.vida << '\n';
-    out<< "Escudo";
-    out << b.escudo << '\n';
-    out << "Escudo Ativado"; 
-    out << b.escudoAtivado << '\n';
-    out << "Quantidade de personagens";
-    out << b.qtdPersonagens << '\n';
-
+    //out << static_cast< Time > ;
+    out << "Poder: " << b.poder<< "\n";
+    out << "Defesa: " << b.defesa << "\n";
+    
     
     return out;
-};
+}
+
+void Battle::operator=(Battle &other)
+{
+    if(this != &other){
+        this->poder = other.poder;
+        this->qtdPersonagens = other.qtdPersonagens;
+        this->defesa = other.defesa;
+        this->escudoAtivado = other.escudoAtivado;
+    }
+}
 
 Battle::Battle (int totalPersonagens)
 {
@@ -43,6 +52,8 @@ Battle::Battle (int totalPersonagens)
     }
 
 };
+
+
 
 Battle::Battle( const Battle &qtdTotalCopia): qtdPersonagens (qtdTotalCopia.qtdPersonagens)
 {
@@ -98,3 +109,11 @@ bool Battle::operator==(const Battle &right) const
         return false;
     
 };
+
+
+void Battle::setPoder( int poder)
+{
+    if(poder >= 0 ){
+    return;
+    }
+}
