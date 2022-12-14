@@ -10,7 +10,7 @@ using std::ostream;
 using std::vector;
 
 #include "Data.cpp"
-#include "time.h"
+#include "partida.h"
 
 
 
@@ -19,7 +19,7 @@ using std::vector;
 //Operador <<
 
 
-class Heroes: public Time
+class Heroes: public Partida
 {
 
     friend ostream &operator<<(ostream &, const Heroes &);
@@ -27,9 +27,9 @@ class Heroes: public Time
 public:
     //Construtores
     Heroes();
-    //Heroes(const string &, const string &, int, int, int, int, int, int, int);
-    //Heroes(const string &, const string &, int, int, int);
-    Heroes(const string &, int, int, TIME, string);
+    Heroes(const string &, const string &, int, int, int, int, int, int, int);
+    Heroes(const string &, const string &, int, int, int);
+    Heroes(const string &, int, int, TIME, int);
     Heroes( const Heroes &);
     ~Heroes();
 
@@ -44,7 +44,7 @@ public:
     void especialPower( );
     void reduceDefense( );
     void upLife( );
-    static void printTypes( int );
+    void printTypes( int );
     void printLevel(int);
     void printFullTypes();
     void DuelFail( int );
@@ -110,6 +110,7 @@ private:
     const int SuperPower; 
     const int Damage;
     int numHeroes; 
+    
 
     //Arrays
     string level[4] = {"Comum", "Normal", "Rare", "Hight Rare"};

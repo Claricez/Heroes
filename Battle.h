@@ -2,56 +2,61 @@
 #define BATTLE_H
 #include <string>
 #include <iostream>
-#include "time.h"
+#include "partida.h"
 
 using std::string;
 using std::ostream;
 
 
-class Battle: public Time
+class Battle: public Partida
 {
     friend ostream &operator<<(ostream &, const Battle &);
-    public:
- 
 
-    //Operador =
-    //const Battle &operator=( const Battle &);
-  
-   bool operator==(const Battle &) const;
+    public:
+   
     //Construtores
     Battle();
-    //Battle( int, int , bool, TIME, string );
-    //aBattle(int = 10);
     Battle(const Battle &);
-    ~Battle();
+    Battle(int, int, TIME, TIME, int);
+    Battle(int);
+    Battle(int,int);
+    virtual ~Battle();
+    
+
+    virtual void printInformations();
+
+    //Sobrecargas
+    bool operator==(const Battle &) const;
+    bool operator!=(const Battle &) const;
+    void operator!();
+    Battle & operator=(const Battle &);
+  
+
 
     //Métodos
-   
     void poderSuper();
-    void danoBaixo();
+    void danoTime1();
 
     //Get
     int getQtd() const;
+    double getPontoTime1() const {return pontoTime1;}
+     double getPontoTime2() const {return pontoTime2;}
 
     //Set
-    void setPoder(int poder);
-
+    double setPontoTime1(double );
+    double setPontoTime2(double);
     void operator=(Battle &other);
     bool operator==(Battle &other) const;
     bool operator!=(Battle &other) const;
-    void operator!();
-
+   
     private:
         
         int totalPersonagens;
-        int poder;
-        int defesa;
-        bool escudoAtivado;
-        int *ptr;
         int qtdPersonagens; 
+        int *ptr; 
+        double pontoTime1;
+        double pontoTime2;
         
-
-
 };
 
 #endif 

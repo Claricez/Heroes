@@ -4,17 +4,32 @@ using std::ostream;
 
 #include "Villains.h"
 
-Villains::Villains(string name, int poder, int defesa, int life):Heroes(life){
+Villains::Villains()
+{
+
+}
+
+Villains::Villains( int numPartida, string associacao, int poder, int defesa, int vida, string name, string description, TIME time01):Personagem(numPartida,name, description, time01)
+{
+    this->associacao=associacao;
     this->poder=poder;
     this->defesa=defesa;
-    this->name=name;
+    this->vida=vida;
+    
+}
+
+Villains::~Villains()
+{
+
 }
 
 ostream &operator<<(ostream &out, const Villains &v)
 {
-    out << "Name" << v.name; 
-    out << "Defesa: " << v.defesa ;
-    out << "Poder: " << v.poder;
+    out << static_cast< Personagem>(v) << '\n';
+    out << "Defesa: " << v.defesa << "\n";
+    out << "Poder: " << v.poder << "\n";
+    out << "Associação: " << v.associacao << "\n";
+    out << "Vida: " << v.vida<< "\n";
     
     return out;
 };
@@ -30,19 +45,19 @@ void Villains::danoBaixo(int life )
     life = life - 10;
 }
 
-void Villains::vidaReduzida(int life ) 
+int Villains::vidaReduzida(int vida ) 
 {
-    if ( life > 0)
+    if ( vida > 0)
     {
         if ( shieldActive = false)
         {
             vida = vida - 10;
         }
         vida = vida - 5;
-        return;
+        return vida;
     }
     cout <<"Personagem derrotado";
-    return;
+    return vida;
   
     
 }
@@ -63,11 +78,7 @@ void Villains::setDefesa(int defesa)
     }
 }
 
-void Villains::setName(string name)
-{
-    this-> name = name;
-    return;
-}
+
 
 void Villains::setEscudo( int escudo)
 {

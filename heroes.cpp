@@ -30,11 +30,11 @@ Heroes::Heroes( ):Damage(25), SuperPower(100)
    defense = 0;
 }
 
-/**Construtor com atributos específicos 
+//Construtor com atributos específicos 
 Heroes::Heroes(const string & name, const string & type, int life, int strength, int defense):Damage(25), SuperPower(100)
 {
     cout<<"\nConstrutor com atributos específicos";
-    setName( name);
+    //setName( name);
     setType( type );
     shield = 0;
     setStrength( strength );
@@ -43,12 +43,12 @@ Heroes::Heroes(const string & name, const string & type, int life, int strength,
     damageMax++;
     
 }
-*/
-/**Construtor com todos os atributos
+
+//Construtor com todos os atributos
 Heroes::Heroes( const string & name, const string & type, int shield, int strength, int life, int defense, int d, int m, int a):Damage(25), SuperPower(100)
     {
         cout << "\nInicializando Heroes com todos os atributos\n";
-        setName( name );
+        //setName( name );
         setType( type );
         setShield( shield );
         setStrength( strength );
@@ -61,7 +61,7 @@ Heroes::Heroes( const string & name, const string & type, int shield, int streng
 
       
     }
-*/
+
 //Construtor cópia
 Heroes::Heroes( const Heroes& other): Damage(25), SuperPower(100)
 {
@@ -75,7 +75,7 @@ Heroes::Heroes( const Heroes& other): Damage(25), SuperPower(100)
 }
 
 //Construtor com apenas os atributos name, type, shield e life. 
-Heroes::Heroes( const string &type, int shield,int life, TIME time01, string capitao):Damage(25), SuperPower(100), Time(time01, capitao)
+Heroes::Heroes( const string &type, int shield,int life, TIME time01, int numPartida):Damage(25), SuperPower(100), Partida(time01, numPartida)
     {
         cout << "\nInicializando Heroes com atributos especificados";
         
@@ -111,10 +111,9 @@ ostream &operator<<(ostream &out, const Heroes &t)
     return out;
 };
 
-/*
+
 void Heroes::print( ) const
 { 
-    cout << "\nName: " << name << "\n";
     cout << "Types in mission: " << type << "\n";
     cout << "Shield: " << shield << "\n";
     cout << "Strength: "   << strength << '\n';
@@ -127,7 +126,6 @@ void Heroes::print( ) const
     
 }
 
-*/
 void Heroes::power( ){
     strength = strength + 10;
 }
@@ -209,6 +207,7 @@ void Heroes::setDescription( string description )
 
 
 
+
 int Heroes::getDamage( ) const
 {
     return Damage; 
@@ -263,15 +262,7 @@ void Heroes::printLevel(int i)
     cout << "Level: " << level[ i ] << ' ' << '\n';
 }
 
-void Heroes::printFullTypes()
-{
-    int i = 0;
-    cout << "Types of heroes" << "\n";
-    while( i <= NUMTYPES ){
-        cout << Types[i] << "\n";
-        i++;
-    }
-}
+
 
 void Heroes::DuelFail( int setLife )
 {

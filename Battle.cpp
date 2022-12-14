@@ -1,45 +1,44 @@
 #include <iostream>
-
 #include "Battle.h"
 
+#include <string>
+using std::string;
+using std::cout;
 
-/
 Battle::Battle()
 {
-    this->poder = 10;
-    this->defesa = 10;
-    this->escudoAtivado = true;
+
 }
 
-
-Battle::Battle(int poder, int defesa, bool escudoAtivado, TIME time01, string capitao):Time(time01, capitao)
+Battle::Battle( Battle const &other):Partida(static_cast<Partida> (other))
 {
-    setPoder(poder);
-    this->defesa = defesa;
-    this-> escudoAtivado = escudoAtivado;
+    this->pontoTime1 = other.pontoTime1;
+    this->pontoTime2 = other.pontoTime2;
     
 }
 
+Battle::Battle(int pontoTime1, int pontoTime2, TIME time1, TIME time2, int numPartida):Partida(time1, time2, numPartida)
+{
+    setPontoTime1(pontoTime1);
+    setPontoTime2(pontoTime2);
+}
+
+Battle::Battle(int pontoTime1, int pontoTime2){
+    setPontoTime1(pontoTime1);
+    setPontoTime2(pontoTime2);
+
+}
 
 ostream &operator<<(ostream &out, const Battle &b)
 {
-    //out << static_cast< Time > ;
-    out << "Poder: " << b.poder<< "\n";
-    out << "Defesa: " << b.defesa << "\n";
-    
-    
+    out << static_cast< Partida>(b) << '\n';
+    out << "Pontos Heróis: " << b.pontoTime1 << "\n";
+    out << "Pontos Vilões: " << b.pontoTime2 << "\n";
+  
+       
     return out;
 }
 
-void Battle::operator=(Battle &other)
-{
-    if(this != &other){
-        this->poder = other.poder;
-        this->qtdPersonagens = other.qtdPersonagens;
-        this->defesa = other.defesa;
-        this->escudoAtivado = other.escudoAtivado;
-    }
-}
 
 Battle::Battle (int totalPersonagens)
 {
@@ -55,16 +54,6 @@ Battle::Battle (int totalPersonagens)
 
 
 
-Battle::Battle( const Battle &qtdTotalCopia): qtdPersonagens (qtdTotalCopia.qtdPersonagens)
-{
-    ptr = new int [qtdPersonagens];
-
-    for ( int i = 0; i<qtdPersonagens; i++)
-    {
-        ptr[i] = qtdTotalCopia.ptr[i];
-    }
-};
-
 Battle::~Battle(){
     delete [] ptr;
 };
@@ -75,7 +64,7 @@ int Battle::getQtd ( ) const
     return qtdPersonagens;
 };
 
-const Battle &Battle::operator=(const Battle &right)
+Battle &Battle::operator=(const Battle &right)
 {
     if (&right != this)
     {
@@ -110,10 +99,43 @@ bool Battle::operator==(const Battle &right) const
     
 };
 
-
-void Battle::setPoder( int poder)
+ 
+double Battle::setPontoTime1( double pontoTime1)
 {
-    if(poder >= 0 ){
-    return;
+    while(pontoTime1>0)
+    {
+        return pontoTime1;
     }
+    if (pontoTime1 < 1)
+    {
+        cout << "Heróis derrotados" << "\n";
+    }
+
+    return pontoTime1;
+};
+
+double Battle::setPontoTime2( double pontoTime2)
+{
+    while(pontoTime2>0)
+    {
+        return pontoTime2;
+    }
+    if (pontoTime2 < 1)
+    {
+        cout << "Vilões derrotados" << "\n";
+    }
+
+    return pontoTime2;
+};
+
+void Battle::danoTime1( )
+{
+    pontoTime1 = pontoTime1 -10;
+}
+
+
+void Battle::printInformations()
+{
+    cout << "Pontos Heróis: " << this->pontoTime1 << "\n";
+    cout << "Pontos Vilões: " << this->pontoTime2 << "\n";
 }
